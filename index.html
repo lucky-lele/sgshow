@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<meta name="author" content="LuckyLele" />
+<link rel="icon" type="image/png" href="icon.png" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>三国锦绣（线上版）</title>
+</head>
+<body>
+<div id="view">
+  <a class="btn" href="javascript:faq()">常见问题</a>
+  <a class="btn" href="javascript:table(0)">最近使用</a>
+  <p>导航</p>
+  <div class="nav">
+  <span>静态</span>
+  <a class="navi" href="#avatar_div">形象</a>
+  <a class="navi" href="#border_div">边框</a>
+  <a class="navi" href="#backgd_div">背景</a></div>
+  <p>特征码</p>
+  <a class="cbtn" href="javascript:encode()">生成</a>
+  <input type="text" id="get_code" maxlength="9" size="9" onkeydown="codeKey(event)" />
+  <a class="cbtn" href="javascript:decode()">识别</a>
+  <p id="code_info">test</p>
+  <p>预览<a id="mypause" href="javascript:mypause()">暂停</a></p>
+  <canvas id="gui" width="148px" height="208px">您的浏览器不支持此应用</canvas>
+  <a id="link" href="#" download="download.png">点击此处下载</a>
+</div><!-- view -->
+<div id="faq">
+  <p>Q: 线上版和<a href="http://club.sanguosha.com/thread-243338-1-1.html">普通版</a>有什么区别？</p>
+  <p>A: 考虑到服务器负荷与网络传输效率，线上版图片均进行过有损压缩，因而图片质量有一定的损失。同时，线上版移除了部分非核心功能，例如昵称、称号、武将灯的设置等，且暂不支持动态部件的预览和搭配。如需使用普通版，请到本应用<a href="http://club.sanguosha.com/thread-243338-1-1.html">发布帖</a>下载最新版本程序与动态资源包。</p>
+  <p>Q: 为什么右侧“预览”下方显示“您的浏览器不支持此应用”？</p>
+  <p>A: 请使用支持 HTML5 的浏览器。</p>
+  <p>Q: 什么是“特征码”？</p>
+  <p>Q: 特征码是一组搭配对应的唯一ID，可以用来快速分享您的搭配。点击“生成”按钮可以在文本框中产生当前搭配的特征码，并在文本框下方生成线上预览链接（链接仅支持静态搭配）；将某一特征码输入文本框后，点击“识别”按钮即可预览该搭配。</p>
+  <p>Q: 如何快速定位到想要找的秀？</p>
+  <p>A: 请在对应的分类标题旁的文本框内输入部件名称（需至少输入2个字符），或使用浏览器的搜索功能（例如 Ctrl + F）。</p>
+  <p>Q: 如何联系作者？</p>
+  <p>A: 请到本应用<a href="http://club.sanguosha.com/thread-243338-1-1.html">发布帖</a>内留言。</p>
+  <input type="button" class="bottom_btn" onclick="close_faq()" value="关闭" />
+</div><!-- faq -->
+<div id="table">
+  <table id="item_table">
+    <tr><th rowspan="2">形象</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr class="label"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><th rowspan="2">边框</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr class="label"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><th rowspan="2">背景</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr class="label"><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <input type="button" class="bottom_btn" onclick="close_table()" value="关闭" />
+</div><!-- table -->
+<div id="status">
+  <p>页面载入中...</p>
+</div>
+<div id="content">
+<div id="main">
+  <div id ="avatar_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_avatar" class="expand" onclick="expand(0)">&and;收起</span>
+      形象（静态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="avatar_search" class="search" maxlength="12" onkeydown="search(0,event)" />
+        <span id="avatar_result" class="res_label"></span>
+        <span id="avatar_close" class="search_btn" onclick="close_search(0)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(0,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(0,-3)">&#8918;</span>
+        <input type="text" id="avatar_page" class="page" maxlength="2" onkeydown="pageKey(0,event)" />
+        <span class="page_btn" onclick="show_list(0,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(0,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div>
+  <div id ="border_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_border" class="expand" onclick="expand(2)">&and;收起</span>
+      边框（静态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="border_search" class="search" maxlength="12" onkeydown="search(2,event)" />
+        <span id="border_result" class="res_label"></span>
+        <span id="border_close" class="search_btn" onclick="close_search(2)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(2,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(2,-3)">&#8918;</span>
+        <input type="text" id="border_page" class="page" maxlength="2" onkeydown="pageKey(2,event)" />
+        <span class="page_btn" onclick="show_list(2,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(2,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div>
+  <div id ="backgd_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_backgd" class="expand" onclick="expand(1)">&and;收起</span>
+      背景（静态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="backgd_search" class="search" maxlength="12" onkeydown="search(1,event)" />
+        <span id="backgd_result" class="res_label"></span>
+        <span id="backgd_close" class="search_btn" onclick="close_search(1)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(1,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(1,-3)">&#8918;</span>
+        <input type="text" id="backgd_page" class="page" maxlength="2" onkeydown="pageKey(1,event)" />
+        <span class="page_btn" onclick="show_list(1,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(1,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div>
+</div><!-- main -->
+<div id="foot">
+<p>作者：<a href="http://club.sanguosha.com/space-uid-22004.html">Luckylele</a>
+@
+<a href="http://club.sanguosha.com">三国杀官方社区</a></p>
+<p>本应用发布地址：<a href="http://club.sanguosha.com/thread-243338-1-1.html">【三国锦绣】三国秀获取、搭配、保存工具</a></p>
+<p>转载请注明出处。图片版权归三国杀OL官方所有。</p>
+</div>
+<div id="avatar_hidden" class="hidden"></div>
+<div id="border_hidden" class="hidden"></div>
+<div id="backgd_hidden" class="hidden"></div>
+</div>
+<script src="sgs_show.js" charset="utf-8"></script>
+</body>
+</html>
