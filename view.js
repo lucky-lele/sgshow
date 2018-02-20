@@ -75,10 +75,33 @@ function draw(idx, pid) {
   if (pid[0] !== 0) gui.drawImage(imgs[0], 29, 22);
   if (pid[2] !== 0) gui.drawImage(imgs[2], 0, 0);
 
+  var fname = "download";
+  if (pid[0] != 0) fname = pid[0];
+  else if (pid[2] != 0) fname = pid[2];
+  else if (pid[4] != 0) fname = pid[4];
+  document.getElementById("canvas").style.display = "block";
+
+  var lnk = document.getElementById("link");
   try {
-    window.location = can.toDataURL("image/png");
+    var png = can.toDataURL("image/png");
+    if (typeof window.navigator.msSaveOrOpenBlob === "function") {
+      var binary = atob(png.split(',')[1]);
+      var arr = [];
+      for (var i = 0; i < binary.length; i++) arr.push(binary.charCodeAt(i));
+      var blob = new Blob([new Uint8Array(arr)], {type: 'image/png'});
+      lnk.onclick = function() {
+        window.navigator.msSaveOrOpenBlob(blob, fname + ".png");
+      };
+    }
+    else {
+      lnk.setAttribute("download", fname + ".png");
+      lnk.href = png;
+    }
+    lnk.innerHTML = "点击此处下载";
   }
   catch (err) {
-    document.write("<h1>未知错误</h1>");
+    lnk.setAttribute("href", "#");
+    link.removeAttribute("download");
+    lnk.innerHTML = "请在预览图上使用右键下载";
   }
 }

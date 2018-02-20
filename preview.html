@@ -6,6 +6,14 @@
 <meta name="author" content="LuckyLele" />
 <link rel="icon" type="image/png" href="icon.png" />
 <style type="text/css">
+body {
+  text-align: center;
+}
+div#canvas {
+  display: none;
+  margin: auto;
+  width: 150px;
+}
 div#hidden {
   display: none;
 }
@@ -13,8 +21,11 @@ div#hidden {
 <title>三国锦绣（线上版）</title>
 </head>
 <body>
-<div id="hidden">
+<div id="canvas">
   <canvas id="gui" width="148px" height="208px">您的浏览器不支持此应用</canvas>
+  <a id="link" href="#" download="download.png">点击此处下载</a>
+</div>
+<div id="hidden">
 </div>
 <script src="view.js" charset="utf-8"></script>
 </body>
