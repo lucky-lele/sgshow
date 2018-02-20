@@ -52,6 +52,7 @@ function show_list(idx, p) {
   switch (p) {
     case -3:
       if (pages[idx] > 0) page = pages[idx] - 1;
+      else return;
       break;
     case -2:
       page = pages[idx] + 1;
@@ -94,6 +95,7 @@ function show_list(idx, p) {
     label.setAttribute("class", "label");
     div.appendChild(img);
     div.appendChild(label);
+    if (String(pids[idx]) === pid) img.style.borderColor = "red";
   }
   document.getElementById("ex_" + cls[idx]).innerHTML = "&and;收起";
 }
@@ -424,6 +426,7 @@ function search(idx, evt) {
       label.setAttribute("class", "label");
       div.appendChild(img);
       div.appendChild(label);
+      if (String(pids[idx]) === pid) img.style.borderColor = "red";
     }
     document.getElementById("ex_" + cls[idx]).innerHTML = "&and;收起";
   }
