@@ -230,8 +230,8 @@ function draw(idx, pid) {
     dom.style.borderColor = "white";
   if (pids[idx2] !== 0 && (dom = document.getElementById(cls[idx2] + "_" + pids[idx2]))) {
     dom.style.borderColor = "white";
-    pids[idx2] = 0;
   }
+  pids[idx2] = 0;
   if (pids[idx] === pid) pids[idx] = 0;
   else {
     pids[idx] = pid;
