@@ -91,19 +91,19 @@ input.search {
   width: 90px;
   height: 14px;
 }
-div.avatar {
+div.avatar, div.avatar_dyn {
   width: 58px;
   height: 122px;
   float: left;
   margin: 1px;
 }
-div.border {
+div.border, div.border_dyn {
   width: 80px;
   height: 141px;
   float: left;
   margin: 1px;
 }
-div.backgd {
+div.backgd, div.backgd_dyn {
   width: 59px;
   height: 122px;
   float: left;
@@ -313,6 +313,9 @@ div#view p#code_info {
   margin: 0;
   padding: 3px 0 0 0;
   display: none;
+}
+div#view p#code_info a {
+  float: none;
 }
 #gui {
   border: 2px solid orange;

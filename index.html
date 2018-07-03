@@ -5,18 +5,25 @@
 <meta name="author" content="LuckyLele" />
 <link rel="icon" type="image/png" href="icon.png" />
 <link rel="stylesheet" type="text/css" href="style.css" />
-<title>三国锦绣（线上版）</title>
+<title>三国锦绣</title>
 </head>
 <body>
 <div id="view">
   <a class="btn" href="javascript:faq()">常见问题</a>
+  <a class="btn" href="javascript:effect()">更多特效</a>
   <a class="btn" href="javascript:table(0)">最近使用</a>
+  <a class="btn" href="javascript:table(1)">官方套装</a>
   <p>导航</p>
   <div class="nav">
   <span>静态</span>
   <a class="navi" href="#avatar_div">形象</a>
   <a class="navi" href="#border_div">边框</a>
   <a class="navi" href="#backgd_div">背景</a></div>
+  <div class="nav">
+  <span>动态</span>
+  <a class="navi" href="#avatar_dyn_div">形象</a>
+  <a class="navi" href="#border_dyn_div">边框</a>
+  <a class="navi" href="#backgd_dyn_div">背景</a></div>
   <p>特征码</p>
   <a class="cbtn" href="javascript:encode()">生成</a>
   <input type="text" id="get_code" maxlength="9" size="9" onkeydown="codeKey(event)" />
@@ -27,18 +34,204 @@
   <a id="link" href="#" download="download.png">点击此处下载</a>
 </div><!-- view -->
 <div id="faq">
-  <p>Q: 线上版和<a href="http://club.sanguosha.com/thread-243338-1-1.html">普通版</a>有什么区别？</p>
-  <p>A: 考虑到服务器负荷与网络传输效率，线上版图片均进行过有损压缩，因而图片质量有一定的损失。同时，线上版移除了部分非核心功能，例如昵称、称号、武将灯的设置等，且暂不支持动态部件的预览和搭配。如需使用普通版，请到本应用<a href="http://club.sanguosha.com/thread-243338-1-1.html">发布帖</a>下载最新版本程序与动态资源包。</p>
+  <p>Q: 当前程序版本是？</p>
+  <p>A: 20180704 线上版。</p>
+  <p>Q: 线上版和线下版有什么区别？</p>
+  <p>A: 考虑到服务器负荷与网络传输效率，线上版图片均进行过有损压缩，因而图片质量有一定的损失；而线下版的静态图片均从官网直接下载、动态图片则从本应用资源目录下载，因此不存在质量损失。两个版本的其它功能均相同。</p>
   <p>Q: 为什么右侧“预览”下方显示“您的浏览器不支持此应用”？</p>
   <p>A: 请使用支持 HTML5 的浏览器。</p>
   <p>Q: 什么是“特征码”？</p>
-  <p>Q: 特征码是一组搭配对应的唯一ID，可以用来快速分享您的搭配。点击“生成”按钮可以在文本框中产生当前搭配的特征码，并在文本框下方生成线上预览链接（链接仅支持静态搭配）；将某一特征码输入文本框后，点击“识别”按钮即可预览该搭配。</p>
+  <p>Q: 特征码是一组搭配对应的唯一ID，可以用来快速分享您的搭配。点击“生成”按钮可以在文本框中产生当前搭配的特征码，并在文本框下方生成线上预览链接；将某一特征码输入文本框后，点击“识别”按钮即可预览该搭配。</p>
   <p>Q: 如何快速定位到想要找的秀？</p>
   <p>A: 请在对应的分类标题旁的文本框内输入部件名称（需至少输入2个字符），或使用浏览器的搜索功能（例如 Ctrl + F）。</p>
+  <p>Q: 动态秀如何导出？</p>
+  <p>A: 可以在暂停后将单帧导出。</p>
   <p>Q: 如何联系作者？</p>
-  <p>A: 请到本应用<a href="http://club.sanguosha.com/thread-243338-1-1.html">发布帖</a>内留言。</p>
+  <p>A: 请到本应用<a href="http://club.sanguosha.com/thread-389751-1-1.html">发布帖</a>内留言。</p>
   <input type="button" class="bottom_btn" onclick="close_faq()" value="关闭" />
 </div><!-- faq -->
+<div id="effect">
+  <fieldset class="effect_move">
+    <legend>形象</legend>
+    <p><input type="button" id="avatar_up" class="ud_btn" value="&uarr;" onclick="avatar_up()" /></p>
+    <p>
+      <input type="button" id="avatar_left" class="lr_btn" value="&larr;" onclick="avatar_left()" />
+      <input type="button" id="avatar_reset" class="reset_btn" value="重置" onclick="avatar_reset()" />
+      <input type="button" id="avatar_right" class="lr_btn" value="&rarr;" onclick="avatar_right()" />
+    </p>
+    <p><input type="button" id="avatar_down" class="ud_btn" value="&darr;" onclick="avatar_down()" /></p>
+  </fieldset>
+  <fieldset class="effect_move">
+    <legend>背景</legend>
+    <p><input type="button" id="bkg_up" class="ud_btn" value="&uarr;" onclick="bkg_up()" /></p>
+    <p>
+      <input type="button" id="bkg_left" class="lr_btn" value="&larr;" onclick="bkg_left()" />
+      <input type="button" id="bkg_reset" class="reset_btn" value="重置" onclick="bkg_reset()" />
+      <input type="button" id="bkg_right" class="lr_btn" value="&rarr;" onclick="bkg_right()" />
+    </p>
+    <p><input type="button" id="bkg_down" class="ud_btn" value="&darr;" onclick="bkg_down()" /></p>
+  </fieldset>
+  <fieldset class="appr">
+    <legend>胜率框设定</legend>
+    <p>
+      <span>显示胜率框：</span>
+      <input type="checkbox" id="winrun" />
+      <span>显示胜率和逃跑率：</span>
+      <input type="checkbox" id="winrunrate" />
+      <span>胜率：</span>
+      <input type="text" id="winrate" maxlength="5" size="5" />
+      <span class="percent">%</span>
+      <span>逃跑率：</span>
+      <input type="text" id="runrate" maxlength="5" size="5" />
+      <span class="percent">%</span>
+    </p>
+    <p id="winrun_info" class="p_info"></p>
+    <div id="buttons">
+      <input type="button" class="bottom_btn" onclick="apply_winrun()" value="应用" />
+      <input type="button" class="bottom_btn" onclick="clear_winrun()" value="清除" />
+    </div>
+  </fieldset><!-- class="appr" -->
+  <fieldset class="appr">
+    <legend>外观设定</legend>
+    <p>
+      <span>VIP状态：</span>
+      <select name="vip_status" id="vip_status">
+        <option value="1">已开通</option>
+        <option value="2">已过期</option>
+        <option value="0">不显示</option>
+      </select>
+      <span>VIP等级：</span>
+      <select name="vip_level" id="vip_level">
+        <option value="v9">VIP9</option>
+        <option value="v8">VIP8</option>
+        <option value="v7">VIP7</option>
+        <option value="v6">VIP6</option>
+        <option value="v5">VIP5</option>
+        <option value="v4">VIP4</option>
+        <option value="v3">VIP3</option>
+        <option value="v2">VIP2</option>
+        <option value="v1">VIP1</option>
+        <option value="v10">VIP10</option>
+      </select>
+    </p>
+    <p>
+      <span>昵称：</span>
+      <input type="text" id="nick" name="nick" maxlength="12" />
+      <span>性别：</span>
+      <select name="sex" id="sex">
+        <option value="male">男</option>
+        <option value="female">女</option>
+      </select>
+      <span>等级：</span>
+      <input type="text" id="level" name="level" maxlength="3" />
+    </p>
+    <p>
+      <span>前五个武将灯：</span>
+      <select name="pack1" id="pack1">
+        <option value="1">火</option>
+        <option value="2">林</option>
+        <option value="3">山</option>
+        <option value="6">将1</option>
+        <option value="7">将2</option>
+        <option value="8">将3</option>
+        <option value="9">将4</option>
+        <option value="10">将5</option>
+        <option value="11">原6</option>
+        <option value="12">原7</option>
+        <option value="5">界</option>
+        <option value="4">神</option>
+        <option value="0">风</option>
+      </select>
+      <select name="pack2" id="pack2">
+        <option value="2">林</option>
+        <option value="1">火</option>
+        <option value="3">山</option>
+        <option value="6">将1</option>
+        <option value="7">将2</option>
+        <option value="8">将3</option>
+        <option value="9">将4</option>
+        <option value="10">将5</option>
+        <option value="11">原6</option>
+        <option value="12">原7</option>
+        <option value="5">界</option>
+        <option value="4">神</option>
+        <option value="0">风</option>
+      </select>
+      <select name="pack3" id="pack3">
+        <option value="3">山</option>
+        <option value="1">火</option>
+        <option value="2">林</option>
+        <option value="6">将1</option>
+        <option value="7">将2</option>
+        <option value="8">将3</option>
+        <option value="9">将4</option>
+        <option value="10">将5</option>
+        <option value="11">原6</option>
+        <option value="12">原7</option>
+        <option value="5">界</option>
+        <option value="4">神</option>
+        <option value="0">风</option>
+      </select>
+      <select name="pack4" id="pack4">
+        <option value="6">将1</option>
+        <option value="1">火</option>
+        <option value="2">林</option>
+        <option value="3">山</option>
+        <option value="7">将2</option>
+        <option value="8">将3</option>
+        <option value="9">将4</option>
+        <option value="10">将5</option>
+        <option value="11">原6</option>
+        <option value="12">原7</option>
+        <option value="5">界</option>
+        <option value="4">神</option>
+        <option value="0">风</option>
+      </select>
+      <select name="pack5" id="pack5">
+        <option value="7">将2</option>
+        <option value="1">火</option>
+        <option value="2">林</option>
+        <option value="3">山</option>
+        <option value="6">将1</option>
+        <option value="8">将3</option>
+        <option value="9">将4</option>
+        <option value="10">将5</option>
+        <option value="11">原6</option>
+        <option value="12">原7</option>
+        <option value="5">界</option>
+        <option value="4">神</option>
+        <option value="0">风</option>
+      </select>
+      <span>其中共开通：</span>
+      <select name="packnum" id="packnum">
+        <option value="1">1个</option>
+        <option value="2">2个</option>
+        <option value="3">3个</option>
+        <option value="4">4个</option>
+        <option value="5">5个</option>
+      </select>
+    </p>
+    <p>
+      <span>战功称号：</span>
+      <input type="text" id="zhangong" name="zhangong" maxlength="12" />
+      <select id="title_select" onchange="set_tid(this.value)">
+        <option value="-2">请选择</option>
+        <option value="-1">重新输入</option>
+      </select>
+      <span>背景色：</span>
+      <select name="bkg_color" id="bkg_color">
+        <option value="0">透明</option>
+        <option value="1">黑色</option>
+      </select>
+    </p>
+    <p id="effect_info" class="p_info"></p>
+    <div id="buttons">
+      <input type="button" class="bottom_btn" onclick="apply_effect()" value="应用" />
+      <input type="button" class="bottom_btn" onclick="clear_effect()" value="清除" />
+    </div>
+  </fieldset>
+  <input type="button" class="bottom_btn" onclick="close_effect()" value="关闭" />
+</div><!-- effect -->
 <div id="table">
   <table id="item_table">
     <tr><th rowspan="2">形象</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -72,7 +265,25 @@
         <span class="page_btn" onclick="show_list(0,-1)">&#8921;</span>
       </div>
     </div></div>
-  </div>
+  </div><!-- avatar_div -->
+  <div id ="avatar_dyn_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_avatar_dyn" class="expand" onclick="expand(1)">&and;收起</span>
+      形象（动态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="avatar_dyn_search" class="search" maxlength="12" onkeydown="search(1,event)" />
+        <span id="avatar_dyn_result" class="res_label"></span>
+        <span id="avatar_dyn_close" class="search_btn" onclick="close_search(1)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(1,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(1,-3)">&#8918;</span>
+        <input type="text" id="avatar_dyn_page" class="page" maxlength="2" onkeydown="pageKey(1,event)" />
+        <span class="page_btn" onclick="show_list(1,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(1,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div><!-- avatar_dyn_div -->
   <div id ="border_div" class="imgs">
     <div class="bar"><div class="head">
       <span id="ex_border" class="expand" onclick="expand(2)">&and;收起</span>
@@ -90,36 +301,121 @@
         <span class="page_btn" onclick="show_list(2,-1)">&#8921;</span>
       </div>
     </div></div>
-  </div>
+  </div><!-- border_div -->
+  <div id ="border_dyn_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_border_dyn" class="expand" onclick="expand(3)">&and;收起</span>
+      边框（动态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="border_dyn_search" class="search" maxlength="12" onkeydown="search(3,event)" />
+        <span id="border_dyn_result" class="res_label"></span>
+        <span id="border_dyn_close" class="search_btn" onclick="close_search(3)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(3,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(3,-3)">&#8918;</span>
+        <input type="text" id="border_dyn_page" class="page" maxlength="2" onkeydown="pageKey(3,event)" />
+        <span class="page_btn" onclick="show_list(3,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(3,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div><!-- border_dyn_div -->
   <div id ="backgd_div" class="imgs">
     <div class="bar"><div class="head">
-      <span id="ex_backgd" class="expand" onclick="expand(1)">&and;收起</span>
+      <span id="ex_backgd" class="expand" onclick="expand(4)">&and;收起</span>
       背景（静态）
       <div class="head_btn">
         <span class="label">搜索</span>
-        <input type="text" id="backgd_search" class="search" maxlength="12" onkeydown="search(1,event)" />
+        <input type="text" id="backgd_search" class="search" maxlength="12" onkeydown="search(4,event)" />
         <span id="backgd_result" class="res_label"></span>
-        <span id="backgd_close" class="search_btn" onclick="close_search(1)"></span>
+        <span id="backgd_close" class="search_btn" onclick="close_search(4)"></span>
         &nbsp;
-        <span class="page_btn" onclick="show_list(1,0)">&#8920;</span>
-        <span class="page_btn" onclick="show_list(1,-3)">&#8918;</span>
-        <input type="text" id="backgd_page" class="page" maxlength="2" onkeydown="pageKey(1,event)" />
-        <span class="page_btn" onclick="show_list(1,-2)">&#8919;</span>
-        <span class="page_btn" onclick="show_list(1,-1)">&#8921;</span>
+        <span class="page_btn" onclick="show_list(4,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(4,-3)">&#8918;</span>
+        <input type="text" id="backgd_page" class="page" maxlength="2" onkeydown="pageKey(4,event)" />
+        <span class="page_btn" onclick="show_list(4,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(4,-1)">&#8921;</span>
       </div>
     </div></div>
-  </div>
+  </div><!-- backgd_div -->
+  <div id ="backgd_dyn_div" class="imgs">
+    <div class="bar"><div class="head">
+      <span id="ex_backgd_dyn" class="expand" onclick="expand(5)">&and;收起</span>
+      背景（静态）
+      <div class="head_btn">
+        <span class="label">搜索</span>
+        <input type="text" id="backgd_dyn_search" class="search" maxlength="12" onkeydown="search(5,event)" />
+        <span id="backgd_dyn_result" class="res_label"></span>
+        <span id="backgd_dyn_close" class="search_btn" onclick="close_search(5)"></span>
+        &nbsp;
+        <span class="page_btn" onclick="show_list(5,0)">&#8920;</span>
+        <span class="page_btn" onclick="show_list(5,-3)">&#8918;</span>
+        <input type="text" id="backgd_dyn_page" class="page" maxlength="2" onkeydown="pageKey(5,event)" />
+        <span class="page_btn" onclick="show_list(5,-2)">&#8919;</span>
+        <span class="page_btn" onclick="show_list(5,-1)">&#8921;</span>
+      </div>
+    </div></div>
+  </div><!-- backgd_dyn_div -->
 </div><!-- main -->
 <div id="foot">
 <p>作者：<a href="http://club.sanguosha.com/space-uid-22004.html">Luckylele</a>
 @
 <a href="http://club.sanguosha.com">三国杀官方社区</a></p>
-<p>本应用发布地址：<a href="http://club.sanguosha.com/thread-243338-1-1.html">【三国锦绣】三国秀获取、搭配、保存工具</a></p>
+<p>本应用发布地址：<a href="http://club.sanguosha.com/thread--1-1.html">【三国锦绣】</a>&nbsp;<a href="http://club.sanguosha.com/thread-389751-1-1.html">【三国锦绣2.0】</a></p>
 <p>转载请注明出处。图片版权归三国杀OL官方所有。</p>
 </div>
 <div id="avatar_hidden" class="hidden"></div>
+<div id="avatar_dyn_hidden" class="hidden"></div>
 <div id="border_hidden" class="hidden"></div>
+<div id="border_dyn_hidden" class="hidden"></div>
 <div id="backgd_hidden" class="hidden"></div>
+<div id="backgd_dyn_hidden" class="hidden"></div>
+<div id="title_hidden" class="hidden"></div>
+<div id="src_hidden" class="hidden">
+  <img src="src/arrow.png" id="img_arrow" />
+  <img src="src/female.png" id="img_female" />
+  <img src="src/feng.png" id="img_feng" />
+  <img src="src/huo.png" id="img_huo" />
+  <img src="src/jiang1.png" id="img_jiang1" />
+  <img src="src/jiang2.png" id="img_jiang2" />
+  <img src="src/jiang3.png" id="img_jiang3" />
+  <img src="src/jiang4.png" id="img_jiang4" />
+  <img src="src/jiang5.png" id="img_jiang5" />
+  <img src="src/jie.png" id="img_jie" />
+  <img src="src/lin.png" id="img_lin" />
+  <img src="src/LV.png" id="img_LV" />
+  <img src="src/LVNumber.png" id="img_LVNumber" />
+  <img src="src/male.png" id="img_male" />
+  <img src="src/sha.png" id="img_sha" />
+  <img src="src/sha_bw.png" id="img_sha_bw" />
+  <img src="src/sha_v10.png" id="img_sha_v10" />
+  <img src="src/sha_v10_bw.png" id="img_sha_v10_bw" />
+  <img src="src/shan.png" id="img_shan" />
+  <img src="src/shen.png" id="img_shen" />
+  <img src="src/v1.png" id="img_v1" />
+  <img src="src/v10.png" id="img_v10" />
+  <img src="src/v2.png" id="img_v2" />
+  <img src="src/v3.png" id="img_v3" />
+  <img src="src/v4.png" id="img_v4" />
+  <img src="src/v5.png" id="img_v5" />
+  <img src="src/v6.png" id="img_v6" />
+  <img src="src/v7.png" id="img_v7" />
+  <img src="src/v8.png" id="img_v8" />
+  <img src="src/v9.png" id="img_v9" />
+  <img src="src/v1_bw.png" id="img_v1_bw" />
+  <img src="src/v10_bw.png" id="img_v10_bw" />
+  <img src="src/v2_bw.png" id="img_v2_bw" />
+  <img src="src/v3_bw.png" id="img_v3_bw" />
+  <img src="src/v4_bw.png" id="img_v4_bw" />
+  <img src="src/v5_bw.png" id="img_v5_bw" />
+  <img src="src/v6_bw.png" id="img_v6_bw" />
+  <img src="src/v7_bw.png" id="img_v7_bw" />
+  <img src="src/v8_bw.png" id="img_v8_bw" />
+  <img src="src/v9_bw.png" id="img_v9_bw" />
+  <img src="src/winRateAndRunRate.png" id="img_winRateAndRunRate" />
+  <img src="src/yuan6.png" id="img_yuan6" />
+  <img src="src/yuan7.png" id="img_yuan7" />
+</div><!-- div id="src_hidden" -->
 </div>
 <script src="sgs_show.js"></script>
 </body>

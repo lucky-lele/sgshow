@@ -1,0 +1,343 @@
+body {
+  margin: 0;
+  background-color: white;
+}
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+#content {
+  margin: 0 30px;
+  text-align: center;
+}
+div {
+  width: 800px;
+  margin: 0;
+  padding: 0;
+}
+#status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-family: "Serif";
+  font-size: 40px;
+  background-color: white;
+}
+div#main, div.imgs {
+  float: left;
+}
+div.bar {
+  float: left;
+  width: 792px;
+  text-align: left;
+  border: 2px solid brown;
+  margin: 5px 0;
+  padding: 2px;
+}
+div.head {
+  float: left;
+  font: bold 20px "Serif";
+  background-color: Chocolate;
+  margin: 0;
+  padding: 6px;
+  width: 780px;
+}
+div.head span.expand {
+  font: 12px "Cursive";
+  margin: 0;
+  padding: 4px 20px 4px 5px;
+  color: white;
+}
+span.expand:hover, span.page_btn:hover, span.search_btn:hover {
+  cursor: pointer;
+}
+div.head_btn {
+  width: 500px;
+  float: right;
+  text-align: right;
+}
+div.head span.label {
+  font: normal 12px Sans-serif;
+}
+div.head span.res_label {
+  font: normal 12px Sans-serif;
+  color: Black;
+  border: 0px dashed Black;
+  padding: 2px;
+}
+div.head span.search_btn {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+div.head span.page_btn {
+  font: bold 18px Monospace;
+  color: #333333;
+}
+input.page {
+  font: 14px Monospace;
+  width: 20px;
+  height: 14px;
+  text-align: center;
+}
+input.search {
+  font: 12px Monospace;
+  width: 90px;
+  height: 14px;
+}
+div.avatar, div.avatar_dyn {
+  width: 114px;
+  height: 205px;
+  float: left;
+  margin: 5px 1px;
+}
+div.border, div.border_dyn {
+  width: 158px;
+  height: 242px;
+  float: left;
+  margin: 5px 1px;
+}
+div.backgd, div.backgd_dyn {
+  width: 115px;
+  height: 204px;
+  float: left;
+  margin: 5px 1px;
+}
+img {
+  border: 5px ridge white;
+}
+img:hover {
+  cursor: pointer;
+}
+p.label {
+  font: 12px Sans-serif;
+  margin: 0;
+  padding: 2px;
+}
+div#view {
+  position: fixed;
+  top: 10px;
+  left: 860px;
+  width: 164px;
+  text-align: center;
+}
+div#view p {
+  font: 14px "Serif";
+  margin: 8px 0 0 0;
+  padding: 8px 0 5px 0;
+  color: brown;
+  clear: both;
+  position: relative;
+}
+div#view a {
+  float: left;
+  text-decoration: none;
+  font-family: Monospace;
+}
+div#view a:visited {
+  color: blue;
+  text-decoration: none;
+}
+div#view a:hover {
+  text-decoration: none;
+}
+div#view a#mypause {
+  float:none;
+  position: absolute;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  top: 10px;
+  left: 120px;
+  display: none;
+}
+div#view a.btn {
+  width: 70px;
+  height: 18px;
+  margin: 0;
+  padding: 5px;
+  font-size: 16px;
+  background-color: SandyBrown;
+  border: 1px solid Brown;
+}
+div#view input {
+  font-family: Monospace;
+  float: left;
+  font-size: 12px;
+  margin: 0 5px;
+  padding: 0;
+  width: 72px;
+  height: 16px;
+}
+div#view a.cbtn {
+  width: 30px;
+  height: 16px;
+  font-size: 14px;
+  margin: 0px 2px;
+  padding: 2px;
+  background-color: SandyBrown;
+}
+div.nav {
+  width: 164px;
+  float: left;
+  background-color:Wheat;
+}
+div.nav span {
+  color: Chocolate;
+  font-size: 15px;
+  font-family: Sans-serif;
+  float: left;
+  height: 15px;
+  margin: 4px 0;
+  padding: 2px 6px;
+  border-right: 1px solid SandyBrown;
+}
+div.nav a.navi {
+  height: 15px;
+  margin: 0;
+  padding: 6px;
+  font-size: 14px;
+}
+div#view a#link {
+  float: none;
+  display: none;
+}
+div#faq, div#effect, div#table {
+  position: fixed;
+  text-align: center;
+  top: 30px;
+  left: 30px;
+  display: none;
+  border: 5px solid brown;
+  background-color: white;
+  padding: 10px;
+  width: 770px;
+}
+div#faq p {
+  text-align: left;
+  margin: 2px 20px;
+}
+div#faq p:first-letter {
+  font-weight: bold;
+}
+input.bottom_btn {
+  margin: 5px;
+}
+fieldset.effect_move {
+  float: left;
+  margin: 3px;
+  border-width: 2px;
+  padding: 5px;
+  width: 365px;
+  height: 108px;
+  text-align: center;
+}
+fieldset p {
+  height: 24px;
+  margin: 5px;
+}
+fieldset p.p_info {
+  text-align: center;
+  font-size: 15px;
+  color: red;
+  display: none;
+}
+fieldset.appr {
+  margin: 3px;
+  border-width: 2px;
+  padding: 5px;
+  text-align: left;
+}
+div#buttons {
+  width: 750px;
+  text-align: center;
+}
+fieldset span {
+  margin-left: 30px;
+  font-size: 14px;
+}
+fieldset span.percent {
+  margin-left: 0;
+}
+select#title_select {
+  display: none;
+}
+table {
+  border-collapse: collapse;
+  border: 2px solid Chocolate;
+  font-family: Sans-serif;
+}
+th {
+  border: 2px solid Chocolate;
+  width: 25px;
+  font-size: 18px;
+  background-color: SandyBrown;
+}
+td {
+  border: 1px solid Chocolate;
+  width: 79px;
+  text-align: center;
+}
+td img {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  width: 79px;
+  height: 121px;
+  text-align: center;
+  vertical-align: middle;
+}
+tr {
+  height: 121px;
+}
+tr.label {
+  height: 30px;
+}
+tr.label td {
+  border-bottom-width: 2px;
+  font-size: 12px;
+}
+td span {
+  color: Chocolate;
+}
+div#view p#code_info {
+  font-family: Sans-serif;
+  font-size: 12px;
+  color: red;
+  margin: 0;
+  padding: 3px 0 0 0;
+  display: none;
+}
+div#view p#code_info a {
+  float: none;
+}
+#gui {
+  border: 2px solid orange;
+  padding: 2px;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+#foot {
+  clear: both;
+  background-color: SandyBrown;
+  width: 790px;
+  padding: 5px;
+  font-family: Sans-serif;
+}
+#foot p {
+  font-size: 12px;
+  margin: 2px;
+}
+div.hidden {
+  display: none;
+}
