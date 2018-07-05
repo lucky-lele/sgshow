@@ -153,7 +153,7 @@ function draw_pic() {
   }
   catch (err) {
     lnk.setAttribute("href", "#");
-    link.removeAttribute("download");
+    lnk.removeAttribute("download");
     lnk.innerHTML = "请在预览图上使用右键下载";
   }
 }
