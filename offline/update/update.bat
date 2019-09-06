@@ -97,37 +97,47 @@ for /f "tokens=*" %%i in (list.txt) do (
     set dst=%%subdirs[0]%%!fname!
     set src=%AVATAR%!fname!
     if "!fname!" == "1989.png" set src=%GITHUB%avatar/!fname!
+  ) else (
+    if "!id!" == "1" (
+      set dst=%%subdirs[1]%%!fname!
+      set src=%GITHUB%avatar_dyn/!fname!
+    ) else (
+      if "!id!" == "2" (
+        set dst=%%subdirs[2]%%!fname!
+        set src=%BORDER%!fname!
+      ) else (
+        if "!id!" == "3" (
+          set dst=%%subdirs[3]%%!fname!
+          set src=%GITHUB%border_dyn/!fname!
+        ) else (
+          if "!id!" == "4" (
+            set dst=%%subdirs[4]%%!fname!
+            set src=%BACKGD%!fname!
+          ) else (
+            if "!id!" == "5" (
+              set dst=%%subdirs[5]%%!fname!
+              set src=%GITHUB%bkg_dyn/!fname!
+            ) else (
+              if "!id!" == "6" (
+                set dst=%%subdirs[6]%%!fname!
+                set src=%TITLE%!fname!
+              ) else (
+                if "!id!" == "7" (
+                  set dst=%%subdirs[7]%%!fname!
+                  set src=%GITROOT%src/!fname!
+                )
+              )
+            )
+          )
+        )
+      )
+    )
   )
-  if "!id!" == "1" (
-    set dst=%%subdirs[1]%%!fname!
-    set src=%GITHUB%avatar_dyn/!fname!
+
+  if not exist !dst! (
+    call :my_download !src! !dst!
+    call :check_file !dst!
   )
-  if "!id!" == "2" (
-    set dst=%%subdirs[2]%%!fname!
-    set src=%BORDER%!fname!
-  )
-  if "!id!" == "3" (
-    set dst=%%subdirs[3]%%!fname!
-    set src=%GITHUB%border_dyn/!fname!
-  )
-  if "!id!" == "4" (
-    set dst=%%subdirs[4]%%!fname!
-    set src=%BACKGD%!fname!
-  )
-  if "!id!" == "5" (
-    set dst=%%subdirs[5]%%!fname!
-    set src=%GITHUB%bkg_dyn/!fname!
-  )
-  if "!id!" == "6" (
-    set dst=%%subdirs[6]%%!fname!
-    set src=%TITLE%!fname!
-  )
-  if "!id!" == "7" (
-    set dst=%%subdirs[7]%%!fname!
-    set src=%GITROOT%src/!fname!
-  )
-  call :my_download !src! !dst!
-  call :check_file !dst!
 )
 
 del list.txt
