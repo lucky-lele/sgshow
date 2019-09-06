@@ -157,6 +157,7 @@ window.onload = function() {
 
   for (i = 0; i < N; i++) show_list(i, 0);      // display show
   document.getElementById("link").style.display = "none";
+  document.getElementById("exgif").style.display = "none";
   document.getElementById("status").style.display = "none";
   effect_info.style.display = "none";
   winrun_info.style.display = "none";
@@ -249,6 +250,7 @@ function add_recent(idx, pid, num) {
   document.getElementById("table").style.display = "none";
   document.getElementById("code_info").style.display = "none";
   document.getElementById("link").style.display = "none";
+  document.getElementById("exgif").style.display = "none";
 
   var tmp = new imgCache();
   var idx2 = parseInt(idx / 2);
@@ -350,18 +352,20 @@ function draw_show() {
     pausebtn.innerHTML = "暂停";
     pausebtn.style.display = "inline";
     animeRunning = true;
-    last_time = performance.now();
+    if (typeof performance === "object")
+      last_time = performance.now();
+    else
+      last_time = Date.now();
+    document.getElementById("exgif").style.display = "block";
     animeRef = requestAnimationFrame(draw_frame);
   }
 }
 
 function draw_pic() {
   gui.clearRect(0, 0, 148, 208);
-  if (effect_flag == 1) {
-    if (bkgc == 1) {
-      gui.fillStyle = "black";
-      gui.fillRect(0, 0, 148, 208);
-    }
+  if (effect_flag === 1 && bkgc == 1) {
+    gui.fillStyle = "black";
+    gui.fillRect(0, 0, 148, 208);
   }
 
   if (pids[4] !== 0)
@@ -370,8 +374,8 @@ function draw_pic() {
     gui.drawImage(imgs[0], 29 + avatar_shift[0], 22 + avatar_shift[1]);
   if (pids[2] !== 0)
     gui.drawImage(imgs[1], 0, 0);
-  draw_effects();
-  draw_pack(0);
+  draw_effects(gui);
+  draw_pack(gui, 0, thispack);
 
   if (pids[0] !== 0 || pids[2] !== 0 || pids[4] !== 0 || effect_flag !== 0 || winrun_flag !== 0) {
     var fname = "download";
@@ -380,7 +384,10 @@ function draw_pic() {
     else if (pids[4] != 0) fname = pids[4];
     export_pic(fname);
   }
-  else document.getElementById("link").style.display = "none";
+  else {
+    document.getElementById("link").style.display = "none";
+    document.getElementById("exgif").style.display = "none";
+  }
 }
 
 function draw_frame(now) {
@@ -390,11 +397,9 @@ function draw_frame(now) {
     last_time = now - (elapsed % fps_delay);
 
     gui.clearRect(0, 0, 148, 208);
-    if (effect_flag == 1) {
-      if (bkgc == 1) {
-        gui.fillStyle = "black";
-        gui.fillRect(0, 0, 148, 208);
-      }
+    if (effect_flag === 1 && bkgc == 1) {
+      gui.fillStyle = "black";
+      gui.fillRect(0, 0, 148, 208);
     }
 
     if (pids[4] !== 0)          // background
@@ -423,12 +428,13 @@ function draw_frame(now) {
       if (++(frame[1]) >= recent[1][0].num) frame[1] = 0;
     }
 
-    draw_effects();
-    draw_pack(1);
+    draw_effects(gui);
+    draw_pack(gui, 1, thispack);
   }
 }
 
 function stop_anime() {
+  document.getElementById("exgif").style.display = "none";
   cancelAnimationFrame(animeRef);
   animeRunning = false;
 }
@@ -915,10 +921,10 @@ function clear_winrun() {
   if (pids[1] === 0 && pids[3] === 0 && pids[5] === 0) draw_pic();
 }
 
-function draw_effects() {
-  if (effect_flag == 1) {
+function draw_effects(gui) {
+  if (effect_flag === 1) {
     var nickwidth = nicklen * 6;
-    if (offset == 0) {
+    if (offset === 0) {
       offset = parseInt((110 - nickwidth - lv.length * 7) / 2 + 21);
     }
     // nickname
@@ -977,7 +983,7 @@ function draw_effects() {
     // title
     if (titleid != "")
       gui.drawImage(document.getElementById("hidden_title_" + titleid), 13, 32, 18, 108);
-  } // if (effect_flag == 1)
+  } // if (effect_flag === 1)
 
   if (winrun_flag > 0) {
     gui.drawImage(document.getElementById("img_winRateAndRunRate"), 2, 147);
@@ -994,7 +1000,7 @@ function draw_effects() {
   } // if (winrun_flag > 0)
 }
 
-function draw_pack(flag) {
+function draw_pack(gui, flag, thispack) {
   if (effect_flag !== 1) return;
   var i, j, packimg;
   if (flag == 0) {
@@ -1034,6 +1040,7 @@ function mypause() {
   }
   else {
     document.getElementById("link").style.display = "none";
+    document.getElementById("exgif").style.display = "block";
     animeRunning = true;
     last_time = performance.now()
     animeRef = requestAnimationFrame(draw_frame);
@@ -1294,5 +1301,107 @@ function show_official() {
     }
   }
   document.getElementById("table").style.display = "block";
+}
+
+function export_gif() {
+  var fname = "download";
+  if (pids[1] != 0) fname = pids[1];
+  else if (pids[2] != 0) fname = pids[2];
+  else if (pids[3] != 0) fname = pids[3];
+  else if (pids[4] != 0) fname = pids[4];
+  else if (pids[5] != 0) fname = pids[5];
+
+  var gif = new GIF({
+    workers: 2,
+    quality: 10,
+    width: 148,
+    height: 208,
+    background: "rgba(255,255,255,0)"
+  });
+
+  var ctx = document.getElementById("hgui").getContext("2d");
+  var frm = new Array(0,0,0);
+  var tspack = new Array(thispack.length);
+  for (i = 0; i < thispack.length; i++) tspack[i] = 0;
+
+  var i, n;
+  var nfrm = 10;
+  for (i = 0; i < 3; i++)
+    if (nfrm < recent[i][0].num) nfrm = recent[i][0].num;
+
+  for (n = 0; n < nfrm; n++) {
+    ctx.clearRect(0, 0, 148, 208);
+    if (effect_flag === 1 && bkgc == 1) {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, 148, 208);
+    }
+
+    if (pids[4] !== 0)          // background
+      ctx.drawImage(imgs[2], 29 + bkg_shift[0], 22 + bkg_shift[1]);
+    else if (pids[5] !== 0) {
+      ctx.drawImage(imgs[2], frm[2] * recent[2][0].dim[0], 0,
+          recent[2][0].dim[0], recent[2][0].dim[1], 29 + bkg_shift[0],
+          22 + bkg_shift[1], recent[2][0].dim[0], recent[2][0].dim[1]);
+      if (++(frm[2]) >= recent[2][0].num) frm[2] = 0;
+    }
+
+    if (pids[0] !== 0)          // avatar
+      ctx.drawImage(imgs[0], 29 + avatar_shift[0], 22 + avatar_shift[1]);
+    else if (pids[1] !== 0) {
+      ctx.drawImage(imgs[0], frm[0] * recent[0][0].dim[0], 0,
+          recent[0][0].dim[0], recent[0][0].dim[1], 29 + avatar_shift[0],
+          22 + avatar_shift[1], recent[0][0].dim[0], recent[0][0].dim[1]);
+      if (++(frm[0]) >= recent[0][0].num) frm[0] = 0;
+    }
+
+    if (pids[2] !== 0) ctx.drawImage(imgs[1], 0, 0);    // border
+    else if (pids[3] !== 0) {
+      ctx.drawImage(imgs[1], frm[1] * recent[1][0].dim[0], 0,
+          recent[1][0].dim[0], recent[1][0].dim[1], 0, 0,
+          recent[1][0].dim[0], recent[1][0].dim[1]);
+      if (++(frm[1]) >= recent[1][0].num) frm[1] = 0;
+    }
+
+    draw_effects(ctx);
+    draw_pack(ctx, 1, tspack);
+
+    try {
+      gif.addFrame(ctx, {copy: true, delay: 100});
+    }
+    catch (err) {
+      alert("您的浏览器不支持导出动图");
+      break;
+    }
+  }
+
+  gif.on('finished', function(blob) {
+    var lnk = document.getElementById("link");
+    try {
+      if (typeof window.navigator.msSaveOrOpenBlob === "function") {
+        lnk.onclick = function() {
+          window.navigator.msSaveOrOpenBlob(blob, fname + ".gif");
+        };
+      }
+      else {
+        lnk.setAttribute("download", fname + ".gif");
+        lnk.href = URL.createObjectURL(blob);
+      }
+      document.getElementById("exgif").style.display = "none";
+      lnk.style.display = "block";
+      lnk.innerHTML = "点击此处下载";
+    }
+    catch (err) {
+      alert("您的浏览器不支持导出动图");
+    }
+
+//    window.open(URL.createObjectURL(blob));
+  });
+
+  try {
+    gif.render();
+  }
+  catch (err) {
+    alert("您的浏览器不支持导出动图");
+  }
 }
 

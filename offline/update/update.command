@@ -92,6 +92,8 @@ fi
 my_download ${GITHUB}index.html index.html
 my_download ${GITHUB}style.css style.css
 my_download ${GITHUB}sgs_show.js sgs_show.js
+my_download ${GITROOT}gif.js gif.js
+my_download ${GITROOT}gif.worker.js gif.worker.js
 
 if [ -f index.html ]; then
   mv index.html ../
@@ -107,6 +109,18 @@ else
 fi
 if [ -f sgs_show.js ]; then
   mv sgs_show.js ../
+else
+  show_info "主程序包下载失败，请稍后重试"
+  my_exit
+fi
+if [ -f gif.js ]; then
+  mv gif.js ../
+else
+  show_info "主程序包下载失败，请稍后重试"
+  my_exit
+fi
+if [ -f gif.worker.js ]; then
+  mv gif.worker.js ../
 else
   show_info "主程序包下载失败，请稍后重试"
   my_exit

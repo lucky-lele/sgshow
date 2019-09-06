@@ -58,18 +58,26 @@ call :show_info 更新主程序
 if exist index.html del index.html
 if exist style.css del style.css
 if exist sgs_show.js del sgs_show.js
+if exist gif.js del gif.js
+if exist gif.worker.js del gif.worker.js
 
 call :my_download %GITHUB%index.html index.html
 call :my_download %GITHUB%style.css style.css
 call :my_download %GITHUB%sgs_show.js sgs_show.js
+call :my_download %GITROOT%gif.js gif.js
+call :my_download %GITROOT%gif.worker.js gif.worker.js
 
 call :check_file index.html
 call :check_file style.css
 call :check_file sgs_show.js
+call :check_file gif.js
+call :check_file gif.worker.js
 
 move index.html ..\index.html
 move style.css ..\style.css
 move sgs_show.js ..\sgs_show.js
+move gif.js ..\gif.js
+move gif.worker.js ..\gif.worker.js
 
 if not exist ..\icon.png call :my_download %GITROOT%icon.png ..\icon.png
 

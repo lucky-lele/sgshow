@@ -204,7 +204,7 @@ div.nav a.navi {
   padding: 6px;
   font-size: 14px;
 }
-div#view a#link {
+div#view a#link, div#view a#exgif {
   float: none;
   display: none;
 }

@@ -32,10 +32,11 @@
   <p>预览<a id="mypause" href="javascript:mypause()">暂停</a></p>
   <canvas id="gui" width="148" height="208">您的浏览器不支持此应用</canvas>
   <a id="link" href="#" download="download.png">点击此处下载</a>
+  <a id="exgif" href="#" onclick="export_gif();return false;">导出动图</a>
 </div><!-- view -->
 <div id="faq">
   <p>Q: 当前程序版本是？</p>
-  <p>A: 20190906 线上版。</p>
+  <p>A: 20190907 线上版。</p>
   <p>Q: 线上版和线下版有什么区别？</p>
   <p>A: 考虑到服务器负荷与网络传输效率，线上版图片均进行过有损压缩，因而图片质量有一定的损失；而线下版的静态图片均从官网直接下载、动态图片则从本应用资源目录下载，因此不存在质量损失。两个版本的其它功能均相同。</p>
   <p>Q: 为什么右侧“预览”下方显示“您的浏览器不支持此应用”？</p>
@@ -45,7 +46,7 @@
   <p>Q: 如何快速定位到想要找的秀？</p>
   <p>A: 请在对应的分类标题旁的文本框内输入部件名称（需至少输入2个字符），或使用浏览器的搜索功能（例如 Ctrl + F）。</p>
   <p>Q: 动态秀如何导出？</p>
-  <p>A: 可以在暂停后将单帧导出。</p>
+  <p>A: 在浏览器支持的情况下，点击预览下方的“导出动图”按钮后，最多等待数秒，即可看到“点击此处下载”链接，点击该链接后即可下载gif格式动图。（最新主流浏览器均支持此功能。）</p>
   <p>Q: 如何联系作者？</p>
   <p>A: 请到本应用<a href="http://club.sanguosha.com/thread-389751-1-1.html">发布帖</a>内留言。</p>
   <input type="button" class="bottom_btn" onclick="close_faq()" value="关闭" />
@@ -372,6 +373,7 @@
 <div id="backgd_dyn_hidden" class="hidden"></div>
 <div id="title_hidden" class="hidden"></div>
 <div id="src_hidden" class="hidden">
+  <canvas id="hgui" width="148" height="208">您的浏览器不支持此应用</canvas>
   <img src="src/arrow.png" id="img_arrow" />
   <img src="src/female.png" id="img_female" />
   <img src="src/feng.png" id="img_feng" />
@@ -417,6 +419,7 @@
   <img src="src/yuan7.png" id="img_yuan7" />
 </div><!-- div id="src_hidden" -->
 </div>
+<script src="gif.js"></script>
 <script src="sgs_show.js"></script>
 </body>
 </html>

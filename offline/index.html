@@ -5036,10 +5036,11 @@
   <p>预览<a id="mypause" href="javascript:mypause()">暂停</a></p>
   <canvas id="gui" width="148" height="208">您的浏览器不支持此应用</canvas>
   <a id="link" href="#" download="download.png">点击此处下载</a>
+  <a id="exgif" href="#" onclick="export_gif();return false;">导出动图</a>
 </div><!-- view -->
 <div id="faq">
   <p>Q: 当前程序版本是？</p>
-  <p>A: 20190906 线下版。</p>
+  <p>A: 20190907 线下版。</p>
   <p>Q: 如何获取版本更新？</p>
   <p>A: 在联网的情况下，双击运行 update 目录下的 update.bat (Windows) 或 update.sh (Linux) 或 update.command (Mac OS) 即可自动更新。</p>
   <p>Q: 为什么部分图片无法显示？</p>
@@ -5053,7 +5054,7 @@
   <p>Q: 如何快速定位到想要找的秀？</p>
   <p>A: 请在对应的分类标题旁的文本框内输入部件名称（需至少输入2个字符），或使用浏览器的搜索功能（例如 Ctrl + F）。</p>
   <p>Q: 动态秀如何导出？</p>
-  <p>A: 可以在暂停后将单帧导出。</p>
+  <p>A: 在浏览器支持的情况下，点击预览下方的“导出动图”按钮后，最多等待数秒，即可看到“点击此处下载”链接，点击该链接后即可下载gif格式动图。（Chrome浏览器不支持线下版此功能。）</p>
   <p>Q: 如何联系作者？</p>
   <p>A: 请到本应用<a href="http://club.sanguosha.com/thread-389751-1-1.html">发布帖</a>内留言。</p>
   <input type="button" class="bottom_btn" onclick="close_faq()" value="关闭" />
@@ -5380,6 +5381,7 @@
 <div id="backgd_dyn_hidden" class="hidden"></div>
 <div id="title_hidden" class="hidden"></div>
 <div id="src_hidden" class="hidden">
+  <canvas id="hgui" width="148" height="208">您的浏览器不支持此应用</canvas>
   <img src="src/arrow.png" id="img_arrow" />
   <img src="src/female.png" id="img_female" />
   <img src="src/feng.png" id="img_feng" />
@@ -5425,6 +5427,7 @@
   <img src="src/yuan7.png" id="img_yuan7" />
 </div><!-- div id="src_hidden" -->
 </div>
+<script src="gif.js"></script>
 <script src="sgs_show.js"></script>
 </body>
 </html>
