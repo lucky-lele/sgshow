@@ -1317,7 +1317,7 @@ function export_gif() {
     quality: 10,
     width: 148,
     height: 208,
-    background: "rgba(255,255,255,0)"
+    transparent: "rgba(0,0,0,0)"
   });
 
   var ctx = document.getElementById("hgui").getContext("2d");
