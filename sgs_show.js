@@ -356,6 +356,7 @@ function draw_show() {
       last_time = performance.now();
     else
       last_time = Date.now();
+    document.getElementById("link").style.display = "none";
     document.getElementById("exgif").style.display = "block";
     animeRef = requestAnimationFrame(draw_frame);
   }
