@@ -136,6 +136,8 @@ window.onload = function() {
     suite = attr.getNamedItem("s").nodeValue;
     data[tid].push(new imgData(pid, txt, num, suite));
   }
+  for (i = 0; i < N; i++)
+    data[i].sort(function(a,b) {return a.pid - b.pid;});
 
   if (ver === "online") {       // load title.xml
     xmlhttp = new XMLHttpRequest();
